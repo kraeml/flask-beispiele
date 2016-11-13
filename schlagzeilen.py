@@ -2,8 +2,9 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def index():
-    return "Hello, World!"
+def get_news():
+    return "Keine Neuigkeiten sind gute Neuigkeiten"
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True, host="0.0.0.0")
