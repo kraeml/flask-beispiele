@@ -46,12 +46,21 @@ def home():
     if not currency_to:
         currency_to = DEFAULTS['currency_to']
     rate, currencies = get_rate(currency_from, currency_to)
-    return render_template("home.html", articles=articles,
-                            weather=weather,
-                            currency_from=currency_from,
-                            currency_to=currency_to,
-                            rate=rate,
-                            currencies=sorted(currencies))
+    response = make_response(render_template("home.html",
+        articles=articles,
+        weather=weather,
+        currency_from=currency_from,
+        currency_to=currency_to,
+        rate=rate,
+        currencies=sorted(currencies)))
+    expires = datetime.datetime.now() + datetime.timedelta(days=365)
+    response.set_cookie("publication", publication, expires=expires)
+    response.set_cookie("city", city, expires=expires)
+    response.set_cookie("currency_from",
+        currency_from, expires=expires)
+    response.set_cookie("currency_to", currency_to, expires=expires)
+    return response
+
 
 def get_rate(frm, to):
     all_currency = urllib2.urlopen(CURRENCY_URL).read()
