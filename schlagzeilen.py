@@ -31,7 +31,9 @@ def home():
     # get customized headlines, based on user input or default
     publication = request.args.get('publication')
     if not publication:
-        publication = DEFAULTS['publication']
+        publication = request.cookies.get("publication")
+        if not publication:
+            publication = DEFAULTS['publication']
     articles = get_news(publication)
     # get customized weather based on user input or default
     city = request.args.get('city')
