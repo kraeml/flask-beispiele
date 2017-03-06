@@ -1,9 +1,29 @@
 <html>
 <head>
   <title>Schlagzeilen</title>
+  <style>
+  html {
+    font-family: "Helvetica";
+    background: white;
+  }
+  body {
+    background: lightgrey;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #header {
+    background: lightsteelblue;
+  }
+</style>
+
+
 </head>
 <body>
-  <h1>Schlagzeilen</h1>
+  <div id="header">
+    <h1>Schlagzeilen</h1>
+    <p>Headlines. Currency. Weather.</p>
+    <hr />
+  </div>
   <h2>Current weather</h2>
   <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
   <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
